@@ -1,0 +1,16 @@
+<form [formGroup]="uploadForm" (ngSubmit)="onSubmit()" class="form-container">
+    <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" placeholder="Title">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" placeholder="Description" maxlength="160"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Categories</mat-label>
+        <input matInput formControlName="categories" placeholder="Categories (comma-separated)">
+    </mat-form-field>
+    <input type="file" (change)="onFileChange($event)">
+    <button mat-raised-button type="submit">Upload</button>
+</form>
