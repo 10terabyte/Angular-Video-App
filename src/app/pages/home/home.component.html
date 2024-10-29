@@ -1,0 +1,17 @@
+<div class="video-list">
+    <div *ngFor="let video of videos()" class="video-card" [routerLink]="['/streaming', video.id]">
+        <div class="thumbnail-container">
+            <img [src]="backendUrl + '/' + video.thumbnailPath" alt="{{ video.title }}" class="thumbnail" matTooltip="{{ video.title }}" matTooltipPosition="above"  >
+            <div class="play-button-overlay">
+                <mat-icon>play_circle_filled</mat-icon>
+            </div>
+        </div>
+        <div class="video-info">
+            <h3 class="title">{{ video.title }}</h3>
+            <p class="description">{{ video.description | slice:0:160 }}</p>
+            <div class="metadata">
+                <span>{{ video.categories.join(', ') }}</span>
+            </div>
+        </div>
+    </div>
+</div>

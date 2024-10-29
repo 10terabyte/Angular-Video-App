@@ -1,0 +1,29 @@
+<div class="form-container">
+
+    <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <input matInput placeholder="Title" formControlName="title">
+            <mat-error *ngIf="errors['title']">{{ errors['title'] }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <textarea matInput placeholder="Description" formControlName="description" maxlength="160"></textarea>
+            <mat-error *ngIf="errors['description']">{{ errors['description'] }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Categories (comma-separated)" formControlName="categories">
+            <mat-error *ngIf="errors['categories']">{{ errors['categories'] }}</mat-error>
+        </mat-form-field>
+
+        <!-- File input for video upload -->
+        <input type="file" (change)="onFileChange($event)" accept=".mp4,.avi,.mov">
+        <mat-error *ngIf="errors['file']">{{ errors['file'] }}</mat-error>
+
+        <button mat-raised-button type="submit">Upload</button>
+        <div class="loading-indicator" *ngIf="loading">
+            <mat-spinner diameter="30"></mat-spinner>
+            <p>Uploading video, please wait...</p>
+        </div>
+    </form>
+</div>
