@@ -1,6 +1,6 @@
 import { Component, signal, WritableSignal } from '@angular/core';
 import { VideoService } from '../../../services/video.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Video } from '../../Models/video.model';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -11,7 +11,7 @@ import { environment } from '../../../environment/environment';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatTooltipModule, MatIconModule],
+  imports: [CommonModule, MatCardModule, MatTooltipModule, MatIconModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

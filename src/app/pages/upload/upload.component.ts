@@ -9,6 +9,7 @@ import { VideoService } from '../../../services/video.service';
 import { Router } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 
 @Component({
   selector: 'app-upload',
@@ -23,7 +24,7 @@ export class UploadComponent {
   readonly maxFileSize = 100 * 1024 * 1024;
   errors: { [key: string]: string } = {};
   loading = false;
-  constructor(private fb: FormBuilder, private videoService: VideoService, private router: Router ) {
+  constructor(private fb: FormBuilder, private videoService: VideoService, private router: Router, private toastr: ToastrService ) {
     this.uploadForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', [Validators.required, Validators.maxLength(160)]],
@@ -85,10 +86,12 @@ export class UploadComponent {
       this.videoService.uploadVideo(formData).subscribe({
         next: (result: any) => {
           this.loading = false;
+          this.toastr.success('Video uploaded successfully!', 'Success'); 
           this.router.navigate([`/streaming/${result.videoId}`]); 
         },
         error: err => {
           console.error("Upload failed:", err);
+          this.toastr.error('Failed to upload video. Please try again.', 'Error');
           this.loading = false;
         }
       });
