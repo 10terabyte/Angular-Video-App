@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { environment } from '../../../environment/environment';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class HomeComponent {
   videos: WritableSignal<Video[]> = signal([]);
-
+  backendUrl = environment.BACKEND_BASE_URL
   constructor(private videoService: VideoService, private router: Router) {
     this.loadVideos();
   }
